@@ -67,14 +67,13 @@ public class WeatherData extends abstractWeather {
 
 	@Override
 	public float getHumidity() {
-		// TODO Auto-generated method stub
-		return 0;
+		return this.main.humidity;
 	}
 
 	@Override
 	public float getPressure() {
 		// TODO Auto-generated method stub
-		return 0;
+		return this.main.pressure;
 	}
 
 	@Override

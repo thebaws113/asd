@@ -34,7 +34,7 @@ public class Client {
 		System.out.println(json);
 		
 		WeatherData data = new WeatherData(element );
-		System.out.printf("%.2f C", data.getTemp());
+		System.out.printf("%.2f C, %.1f, %.1f", data.getTemp(),data.getHumidity(),data.getPressure());
 		
 	}
 
