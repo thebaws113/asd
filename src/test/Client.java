@@ -33,8 +33,9 @@ public class Client {
 		String json = gson.toJson(element);
 		System.out.println(json);
 		
+		
 		WeatherData data = new WeatherData(element );
-		System.out.printf("%.2f C, %.1f, %.1f", data.getTemp(),data.getHumidity(),data.getPressure());
+		System.out.printf("%s %d C,humidity:  %.1f %% , pressure:  %.1f mb",data.getName(),(int)( data.getTemp()),data.getHumidity(),data.getPressure());
 		
 	}
 

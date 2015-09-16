@@ -6,9 +6,10 @@ import com.google.gson.JsonObject;
 public class WeatherData extends abstractWeather {
 	private float humidity, presure;
 	 private MainData main;
-
+private String name;
 	WeatherData(JsonElement e) {
 		main =   new MainData(e);
+	    this.name = e.getAsJsonObject().get("name").toString();
 	}
 
 	static public class MainData extends abstractWeather.Main {
@@ -59,7 +60,10 @@ public class WeatherData extends abstractWeather {
 		}
 
 	}
-
+	@Override
+	public String getName(){
+		return this.name;
+	}
 	@Override
 	public float getTemp() {
 		return this.main.temp;

@@ -24,7 +24,8 @@ public abstract class abstractWeather {
 		abstract public int getDeg();
 
 	}
-
+	abstract public String getName();
+	
 	abstract public float getTemp();
 
 	abstract public float getHumidity();
