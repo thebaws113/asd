@@ -10,9 +10,7 @@ import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 
-import org.json.JSONException;
-import org.json.JSONObject;
-import org.json.JSONStringer;
+ 
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -32,8 +30,7 @@ public class Client {
 		Gson gson = new GsonBuilder().setPrettyPrinting().create();
 		String json = gson.toJson(element);
 		System.out.println(json);
-		
-		
+ 
 		WeatherData data = new WeatherData(element );
 		System.out.printf("%s %d C,humidity:  %.1f %% , pressure:  %.1f mb",data.getName(),(int)( data.getTemp()),data.getHumidity(),data.getPressure());
 		
