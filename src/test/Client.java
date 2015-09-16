@@ -32,6 +32,10 @@ public class Client {
 		Gson gson = new GsonBuilder().setPrettyPrinting().create();
 		String json = gson.toJson(element);
 		System.out.println(json);
+		
+		WeatherData data = new WeatherData(element );
+		System.out.printf("%.2f C", data.getTemp());
+		
 	}
 
 	public String query(String location) {
