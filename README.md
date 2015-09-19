@@ -1,2 +1,2 @@
 # java-Weather-app
-ha
+Basic Weather app
