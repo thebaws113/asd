@@ -5,11 +5,33 @@ import com.google.gson.JsonObject;
 
 public class WeatherData extends abstractWeather {
 	private float humidity, presure;
-	 private MainData main;
-private String name;
+	private MainData main;
+	private String name;
+	private WindData wind;
 	WeatherData(JsonElement e) {
-		main =   new MainData(e);
-	    this.name = e.getAsJsonObject().get("name").toString();
+		main = new MainData(e);
+		this.name = e.getAsJsonObject().get("name").toString();
+		wind = new WindData(e);
+	}
+	static public class WindData extends abstractWeather.Wind{
+		private float speed;
+		private int deg;
+		WindData (JsonElement e){
+			JsonObject mainS = (JsonObject) e.getAsJsonObject().get("wind").getAsJsonObject();
+			this.speed = mainS.get("speed").getAsFloat();
+			this.deg = mainS.get("deg").getAsInt();
+		}
+		@Override
+		public float getSpeed() {
+			return this.speed;
+		}
+
+		@Override
+		public int getDeg() {
+			// TODO Auto-generated method stub
+			return this.deg;
+		}
+		
 	}
 
 	static public class MainData extends abstractWeather.Main {
@@ -19,20 +41,20 @@ private String name;
 		private float tempMax;
 		private float pressure;
 		private float humidity;
-		
+
 		MainData(JsonElement e) {
 			JsonObject mainS = (JsonObject) e.getAsJsonObject().get("main").getAsJsonObject();
 			this.temp = (float) (mainS.get("temp").getAsFloat() - 273.5);
-			this.humidity =  mainS.get("humidity").getAsFloat();
+			this.humidity = mainS.get("humidity").getAsFloat();
 			this.pressure = mainS.get("pressure").getAsFloat();
-			this.tempMax =  mainS.get("temp_max").getAsFloat();
+			this.tempMax = mainS.get("temp_max").getAsFloat();
 			this.tempMin = mainS.get("temp_min").getAsFloat();
 		}
 
 		@Override
 		public float getTemp() {
 			return temp;
-			
+
 		}
 
 		@Override
@@ -60,10 +82,12 @@ private String name;
 		}
 
 	}
+
 	@Override
-	public String getName(){
+	public String getName() {
 		return this.name;
 	}
+
 	@Override
 	public float getTemp() {
 		return this.main.temp;
@@ -83,7 +107,7 @@ private String name;
 	@Override
 	public float getWindSpeed() {
 		// TODO Auto-generated method stub
-		return 0;
+		return this.wind.speed;
 	}
 
 	@Override
@@ -95,7 +119,7 @@ private String name;
 	@Override
 	public int getWindDeg() {
 		// TODO Auto-generated method stub
-		return 0;
+		return this.wind.deg;
 	}
 
 	@Override

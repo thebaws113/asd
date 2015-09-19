@@ -9,8 +9,7 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
-
- 
+import java.util.Scanner;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -22,17 +21,20 @@ public class Client {
 
 	public static void main(String[] args) throws IOException {
 		Client c = new Client();
-		String a = "weather?q=Bucharest";
+		Scanner sc = new Scanner(System.in);
+		String city = sc.nextLine();
+		
+		String a = "weather?q="+city;
 		c.query(a);
 		JsonParser jsonParser = new JsonParser();
 		JsonElement element = jsonParser.parse(c.query(a));
-
+		
 		Gson gson = new GsonBuilder().setPrettyPrinting().create();
 		String json = gson.toJson(element);
-		System.out.println(json);
- 
+		//System.out.println(json);
+		
 		WeatherData data = new WeatherData(element );
-		System.out.printf("%s %d C,humidity:  %.1f %% , pressure:  %.1f mb",data.getName(),(int)( data.getTemp()),data.getHumidity(),data.getPressure());
+		System.out.printf("%s %d C,humidity:  %.1f %% , pressure:  %.1f mb ,speed %.2f m/s , degree : %d",data.getName(),(int)( data.getTemp()),data.getHumidity(),data.getPressure(),data.getWindSpeed(),data.getWindDeg());
 		
 	}
 
