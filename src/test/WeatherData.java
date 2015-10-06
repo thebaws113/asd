@@ -7,19 +7,19 @@ public class WeatherData extends abstractWeather {
 	private float humidity, presure;
 	private MainData main;
 	private String name;
-	private WindData wind;
+	 private WindData wind;
 	WeatherData(JsonElement e) {
 		main = new MainData(e);
 		this.name = e.getAsJsonObject().get("name").toString();
-		wind = new WindData(e);
+		 wind = new WindData(e);
 	}
-	static public class WindData extends abstractWeather.Wind{
+ 	static public class WindData extends abstractWeather.Wind{
 		private float speed;
-		private int deg;
+		 
 		WindData (JsonElement e){
 			JsonObject mainS = (JsonObject) e.getAsJsonObject().get("wind").getAsJsonObject();
 			this.speed = mainS.get("speed").getAsFloat();
-			this.deg = mainS.get("deg").getAsInt();
+			 
 		}
 		@Override
 		public float getSpeed() {
@@ -29,11 +29,11 @@ public class WeatherData extends abstractWeather {
 		@Override
 		public int getDeg() {
 			// TODO Auto-generated method stub
-			return this.deg;
+			return 0;
 		}
 		
 	}
-
+ 
 	static public class MainData extends abstractWeather.Main {
 
 		private float temp;
@@ -119,7 +119,7 @@ public class WeatherData extends abstractWeather {
 	@Override
 	public int getWindDeg() {
 		// TODO Auto-generated method stub
-		return this.wind.deg;
+		return 0;
 	}
 
 	@Override

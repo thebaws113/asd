@@ -21,9 +21,7 @@ public class Client {
 
 	public static void main(String[] args) throws IOException {
 		Client c = new Client();
-		Scanner sc = new Scanner(System.in);
-		String city = sc.nextLine();
-		
+		String city = "London";
 		String a = "weather?q="+city;
 		c.query(a);
 		JsonParser jsonParser = new JsonParser();
@@ -31,10 +29,10 @@ public class Client {
 		
 		Gson gson = new GsonBuilder().setPrettyPrinting().create();
 		String json = gson.toJson(element);
-		//System.out.println(json);
+		 //System.out.println(json);
 		
 		WeatherData data = new WeatherData(element );
-		System.out.printf("%s %d C,humidity:  %.1f %% , pressure:  %.1f mb ,speed %.2f m/s , degree : %d",data.getName(),(int)( data.getTemp()),data.getHumidity(),data.getPressure(),data.getWindSpeed(),data.getWindDeg());
+		System.out.printf("%s %d C,humidity:  %.1f %% , pressure:  %.1f mb , speed: %.1f m/s ",data.getName(),(int)( data.getTemp()),data.getHumidity(),data.getPressure(),data.getWindSpeed());
 		
 	}
 
